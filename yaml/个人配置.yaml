@@ -9,7 +9,7 @@ external-controller: 127.0.0.1:9090
 proxy-providers:
   All:
     type: http
-    url: "你的订阅连接"
+    url: "订阅链接"
     interval: 86400
     path: ./all.yaml
     health-check:
@@ -429,7 +429,7 @@ rules:
   - RULE-SET,BiliBili,🎬 哔哩哔哩
   - RULE-SET,Game,🎮 游戏平台
   - RULE-SET,Emby,🎬 Emby
-  - RULE-SET,Emby,🌏 Speedtest
+  - RULE-SET,Speedtest,🌏 Speedtest
   - RULE-SET,OpenAi,🌏 OpenAi
   - RULE-SET,Global,🌏 国外网站
   - RULE-SET,China,🌏 国内网站
