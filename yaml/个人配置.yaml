@@ -9,7 +9,7 @@ external-controller: 127.0.0.1:9090
 proxy-providers:
   All:
     type: http
-    url: "订阅链接"
+    url: "https://api.v1.mk/sub?target=clash&url=你的订阅链接&list=true&udp=true"
     interval: 86400
     path: ./all.yaml
     health-check:
