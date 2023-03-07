@@ -109,6 +109,30 @@ proxy-groups:
       - REJECT
       - 🚀 Manual
 
+- name: 🔍 Google
+    type: select
+    proxies:
+      - 🚀 Manual
+      - ✈️ Auto
+      - 🇭🇰 HK
+      - 🇯🇵 JP
+      - 🇺🇲 US
+      - 🇨🇳 TW
+      - 🇸🇬 SG
+      - DIRECT
+
+- name: 🕸️ GitHub
+    type: select
+    proxies:
+      - 🚀 Manual
+      - ✈️ Auto
+      - 🇭🇰 HK
+      - 🇯🇵 JP
+      - 🇺🇲 US
+      - 🇨🇳 TW
+      - 🇸🇬 SG
+      - DIRECT
+
   - name: 🎬 YouTube
     type: select
     proxies:
@@ -317,6 +341,20 @@ rule-providers:
     path: ./ruleset/Advertising.yaml
     interval: 86400
 
+  Google:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml"
+    path: ./ruleset/Google.yaml
+    interval: 86400
+
+  GitHub:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/GitHub/GitHub.yaml"
+    path: ./ruleset/GitHub.yaml
+    interval: 86400
+
   YouTube:
     type: http
     behavior: classical
@@ -406,6 +444,8 @@ rule-providers:
 rules:
   - RULE-SET,Direct,DIRECT
   - RULE-SET,adblock,🆎 AdBlock
+  - RULE-SET,Google,🔍 Google
+  - RULE-SET,GitHub,🕸️ GitHub
   - RULE-SET,YouTube,🎬 YouTube
   - RULE-SET,Telegram,📲 Telegram
   - RULE-SET,Spotify,🎶 Spotify
