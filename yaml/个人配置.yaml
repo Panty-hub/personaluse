@@ -109,7 +109,7 @@ proxy-groups:
       - REJECT
       - 🚀 Manual
 
-- name: 🔍 Google
+  - name: 🔍 Google
     type: select
     proxies:
       - 🚀 Manual
@@ -121,7 +121,7 @@ proxy-groups:
       - 🇸🇬 SG
       - DIRECT
 
-- name: 🕸️ GitHub
+  - name: 🕸️ GitHub
     type: select
     proxies:
       - 🚀 Manual
