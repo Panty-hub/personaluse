@@ -3,16 +3,16 @@ payload:
   - DOMAIN-SUFFIX,1.4545.cf
   - DOMAIN-SUFFIX,9191001.xyz
   - DOMAIN-SUFFIX,bili.rip
-  - DOMAIN-SUFFIX,casacam.net
   - DOMAIN-SUFFIX,lzlz.cc
   - DOMAIN-SUFFIX,nmg.llc
+  - DOMAIN-SUFFIX,casacam.net
   - DOMAIN-KEYWORD,freeview
+  - DOMAIN-KEYWORD,bluesea
   - DOMAIN-KEYWORD,misakaf
   - DOMAIN-KEYWORD,emby
   - DOMAIN-KEYWORD,studyfun
   - DOMAIN-KEYWORD,infinityfly
   - DOMAIN-KEYWORD,nijigem
-  - DOMAIN-KEYWORD,nmg
   - DOMAIN-KEYWORD,misty
   - DOMAIN-KEYWORD,odysseyplus
   - DOMAIN-KEYWORD,jmsooo
