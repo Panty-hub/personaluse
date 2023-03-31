@@ -9,7 +9,7 @@ external-controller: 127.0.0.1:9090
 proxy-providers:
   All:
     type: http
-    url: "https://api.v1.mk/sub?target=clash&url=你的订阅链接&list=true&udp=true"
+    url: "https://sub.ops.ci/sub?target=clash&url=你的订阅链接&list=true&tfo=true&udp=true"
     interval: 86400
     path: ./all.yaml
     health-check:
@@ -56,7 +56,7 @@ proxy-providers:
       enable: true
       interval: 120
       url: http://www.gstatic.com/generate_204
-      
+
 dns:
   enable: true
   ipv6: true
@@ -109,6 +109,18 @@ proxy-groups:
       - REJECT
       - 🚀 Manual
 
+  - name: 📞 GoogleVoice
+    type: select
+    proxies:
+      - 🚀 Manual
+      - ✈️ Auto
+      - 🇭🇰 HK
+      - 🇯🇵 JP
+      - 🇺🇲 US
+      - 🇨🇳 TW
+      - 🇸🇬 SG
+      - DIRECT
+
   - name: 🔍 Google
     type: select
     proxies:
@@ -122,6 +134,18 @@ proxy-groups:
       - DIRECT
 
   - name: 🕸️ GitHub
+    type: select
+    proxies:
+      - 🚀 Manual
+      - ✈️ Auto
+      - 🇭🇰 HK
+      - 🇯🇵 JP
+      - 🇺🇲 US
+      - 🇨🇳 TW
+      - 🇸🇬 SG
+      - DIRECT
+
+  - name: 🐦 Twitter
     type: select
     proxies:
       - 🚀 Manual
@@ -341,6 +365,13 @@ rule-providers:
     path: ./ruleset/Advertising.yaml
     interval: 86400
 
+  GoogleVoice:
+    type: http
+    behavior: classical
+    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GoogleVoice/GoogleVoice.yaml"
+    path: ./ruleset/GoogleVoice.yaml
+    interval: 86400
+
   Google:
     type: http
     behavior: classical
@@ -353,6 +384,13 @@ rule-providers:
     behavior: classical
     url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml"
     path: ./ruleset/GitHub.yaml
+    interval: 86400
+
+  Twitter:
+    type: http
+    behavior: classical
+    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml"
+    path: ./ruleset/Twitter.yaml
     interval: 86400
 
   YouTube:
@@ -444,8 +482,10 @@ rule-providers:
 rules:
   - RULE-SET,Direct,DIRECT
   - RULE-SET,adblock,🆎 AdBlock
+  - RULE-SET,GoogleVoice,📞 GoogleVoice
   - RULE-SET,Google,🔍 Google
   - RULE-SET,GitHub,🕸️ GitHub
+  - RULE-SET,Twitter,🐦 Twitter
   - RULE-SET,YouTube,🎬 YouTube
   - RULE-SET,Telegram,📲 Telegram
   - RULE-SET,Spotify,🎶 Spotify
