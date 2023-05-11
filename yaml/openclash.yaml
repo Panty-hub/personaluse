@@ -9,7 +9,7 @@ external-controller: 127.0.0.1:9090
 proxy-providers:
   All:
     type: http
-    url: "https://sub.ops.ci/sub?target=clash&url=你的订阅链接&list=true&tfo=true&udp=true"
+    url: "你的订阅链接"
     interval: 86400
     path: ./all.yaml
     health-check:
