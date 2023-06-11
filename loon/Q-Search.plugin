@@ -5,9 +5,6 @@
 #!icon = https://raw.githubusercontent.com/Panty-hub/personaluse/main/icon/Q-Search.png
 
 [Rewrite]
-# 无关键字默认为Google搜索
-^https?:\/\/duckduckgo\.com\/\?q=([^&]+).+ 302 https://www.google.com/search?q=$1
-
 # bing  Bing搜索
 ^https?:\/\/duckduckgo\.com\/\?q=bing\+([^&]+).+ 302 https://www.bing.com/search?q=$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+bing.+ 302 https://www.bing.com/search?q=$1
@@ -85,6 +82,9 @@
 ^https?:\/\/duckduckgo\.com\/\?q=tr&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143480&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=tr&urlDesc=
 # sg    切换至新区
 ^https?:\/\/duckduckgo\.com\/\?q=sg&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143464&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=tr&urlDesc=
+
+# 无关键字默认为Google搜索
+^https?:\/\/duckduckgo\.com\/\?q=([^&]+).+ 302 https://www.google.com/search?q=$1
 
 [Mitm]
 hostname = duckduckgo.com
