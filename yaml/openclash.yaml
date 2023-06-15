@@ -3,105 +3,105 @@ allow-lan: true
 bind-address: '*'
 mode: rule
 log-level: info
-ipv6: true
-external-controller: 127.0.0.1:9090
+ipv6: false
+external-controller: 127.0.0.1:9999
 
+dns:
+  enable: true       # 不使用系统 DNS
+  ipv6: false        # 关闭 IPV6
+  listen: 0.0.0.0:53 # dns 监听
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - localhost.ptlogin2.qq.com
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - +.msftconnecttest.com
+    - +.msftncsi.com
+    - +.xboxlive.com
+    - msftconnecttest.com
+    - xbox.*.microsoft.com
+    - "*.battlenet.com.cn"
+    - "*.battlenet.com"
+    - "*.blzstatic.cn"
+    - "*.battle.net"
+  nameserver:        # 默认 DNS 服务
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:          # 国外 DNS 服务器
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
 proxy-providers:
-  All:
+  Sub:
     type: http
-    url: "你的订阅链接"
+    url: "https://sub.ops.ci/sub?target=clash&url=你的订阅链接&append_type=true&list=true&tfo=true&udp=false"
     interval: 86400
-    path: ./all.yaml
+    path: ./sub.yaml
     health-check:
       enable: true
       interval: 600
-      url: http://www.gstatic.com/generate_204
+      url: http://www.apple.com/library/test/success.html
+
   HK:
     type: file
-    path: ./all.yaml
+    path: ./sub.yaml
     filter: 港|HK|(?i)Hong
     health-check:
       enable: true
       interval: 120
-      url: http://www.gstatic.com/generate_204
+      url: http://www.apple.com/library/test/success.html
   JP:
     type: file
-    path: ./all.yaml
+    path: ./sub.yaml
     filter: 日|东京|JP|(?i)Japan
     health-check:
       enable: true
       interval: 120
-      url: http://www.gstatic.com/generate_204
+      url: http://www.apple.com/library/test/success.html
   US:
     type: file
-    path: ./all.yaml
+    path: ./sub.yaml
     filter: 美|US|(?i)States|America
     health-check:
       enable: true
       interval: 120
-      url: http://www.gstatic.com/generate_204
+      url: http://www.apple.com/library/test/success.html
   TW:
     type: file
-    path: ./all.yaml
+    path: ./sub.yaml
     filter: 台|湾|TW|(?i)Taiwan
     health-check:
       enable: true
       interval: 120
-      url: http://www.gstatic.com/generate_204
+      url: http://www.apple.com/library/test/success.html
   SG:
     type: file
-    path: ./all.yaml
+    path: ./sub.yaml
     filter: 新|狮|獅|SG|(?i)Singapor
     health-check:
       enable: true
       interval: 120
-      url: http://www.gstatic.com/generate_204
-
-dns:
-  enable: true
-  ipv6: true
-  listen: 0.0.0.0:53
-  default-nameserver:
-    - 119.29.29.29
-    - 223.5.5.5
-    - 8.8.4.4
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-    - localhost.ptlogin2.qq.com
-    - '+.srv.nintendo.net'
-    - '+.stun.playstation.net'
-    - '+.msftconnecttest.com'
-    - '+.msftncsi.com'
-    - '+.xboxlive.com'
-    - 'msftconnecttest.com'
-    - 'xbox.*.microsoft.com'
-    - '*.battlenet.com.cn'
-    - '*.battlenet.com'
-    - '*.blzstatic.cn'
-    - '*.battle.net'
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - https://dns.google/dns-query
+      url: http://www.apple.com/library/test/success.html
     
-proxies:
-
-
-
 proxy-groups:
   - name: 🚀 Manual
     type: select
     use:
-      - All
+      - Sub
 
   - name: ✈️ Auto
     type: url-test
-    use: 
-       - All
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
+    use:
+      - Sub
+    url: "http://www.apple.com/library/test/success.html"
+    interval: 120
 
   - name: 🆎 AdBlock
     type: select
@@ -277,7 +277,31 @@ proxy-groups:
       - 🇸🇬 SG
       - DIRECT
       
+  - name: 🌏 Cloudflare
+    type: select
+    proxies:
+      - 🚀 Manual
+      - ✈️ Auto
+      - 🇭🇰 HK
+      - 🇯🇵 JP
+      - 🇺🇲 US
+      - 🇨🇳 TW
+      - 🇸🇬 SG
+      - DIRECT
+      
   - name: 🌏 China
+    type: select
+    proxies:
+      - 🚀 Manual
+      - ✈️ Auto
+      - 🇭🇰 HK
+      - 🇯🇵 JP
+      - 🇺🇲 US
+      - 🇨🇳 TW
+      - 🇸🇬 SG
+      - DIRECT
+   
+  - name: 🌏 China_Extra
     type: select
     proxies:
       - 🚀 Manual
@@ -317,36 +341,36 @@ proxy-groups:
     type: url-test
     use:
       - HK
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
+    url: "http://www.apple.com/library/test/success.html"
+    interval: 120
 
   - name: 🇯🇵 JP
     type: url-test
     use:
       - JP
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
+    url: "http://www.apple.com/library/test/success.html"
+    interval: 120
 
   - name: 🇨🇳 TW
     type: url-test
     use:
       - TW
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
+    url: "http://www.apple.com/library/test/success.html"
+    interval: 120
 
   - name: 🇸🇬 SG
     type: url-test
     use:
       - SG
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
+    url: "http://www.apple.com/library/test/success.html"
+    interval: 120
 
   - name: 🇺🇲 US
     type: url-test
     use:
       - US
-    url: "http://www.gstatic.com/generate_204"
-    interval: 300
+    url: "http://www.apple.com/library/test/success.html"
+    interval: 120
 
 
 
@@ -358,7 +382,7 @@ rule-providers:
     path: ./ruleset/direct.yaml
     interval: 86400
 
-  adblock:
+  AdBlock:
     type: http
     behavior: classical
     url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising.yaml"
@@ -438,7 +462,7 @@ rule-providers:
   OpenAi:
     type: http
     behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/Panty-hub/personaluse/main/yaml/ai.yaml"
+    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
     path: ./ruleset/OpenAi.yaml
     interval: 86400
   
@@ -462,12 +486,26 @@ rule-providers:
     url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.yaml"
     path: ./ruleset/Game.yaml
     interval: 86400
+    
+  Cloudflare:
+    type: http
+    behavior: classical
+    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare.yaml"
+    path: ./ruleset/Cloudflare.yaml
+    interval: 86400
 
   China:
     type: http
     behavior: classical
     url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.yaml"
     path: ./ruleset/China.yaml
+    interval: 86400
+    
+  China_Extra:
+    type: http
+    behavior: classical
+    url: "https://ghproxy.com/https://raw.githubusercontent.com/Panty-hub/personaluse/main/yaml/direct.yaml"
+    path: ./ruleset/China_Extra.yaml
     interval: 86400
 
   Global:
@@ -481,7 +519,7 @@ rule-providers:
 
 rules:
   - RULE-SET,Direct,DIRECT
-  - RULE-SET,adblock,🆎 AdBlock
+  - RULE-SET,AdBlock,🆎 AdBlock
   - RULE-SET,GoogleVoice,📞 GoogleVoice
   - RULE-SET,Google,🔍 Google
   - RULE-SET,GitHub,🕸️ GitHub
@@ -496,7 +534,9 @@ rules:
   - RULE-SET,Apple,🍎 Apple
   - RULE-SET,Microsoft,🧩 Microsoft
   - RULE-SET,Game,🎮 Game
+  - RULE-SET,Cloudflare,🌏 Cloudflare
   - RULE-SET,China,🌏 China
+  - RULE-SET,China_Extra,🌏 China_Extra
   - RULE-SET,Global,🌏 Global
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
