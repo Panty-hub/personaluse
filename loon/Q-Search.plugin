@@ -21,9 +21,13 @@
 ^https?:\/\/duckduckgo\.com\/\?q=wiki\+([^&]+).+ 302 https://zh.wikipedia.org/wiki/$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+wiki.+ 302 https://zh.wikipedia.org/wiki/$1
 
+# zlib  Z-Library搜索
+^https?:\/\/duckduckgo\.com\/\?q=wiki\+([^&]+).+ 302 https://zlibrary-asia.se/s/$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+wiki.+ 302 https://zlibrary-asia.se/s/$1
+
 # ghu   GitHub用户搜索
-^https?:\/\/duckduckgo\.com\/\?q=ghu\+([^&]+).+ 302 https://github.com/search?q=$1&type=users
-^https?:\/\/duckduckgo\.com\/\?q=([^&]+)\+ghu.+ 302 https://github.com/search?q=$1&type=users
+^https?:\/\/duckduckgo\.com\/\?q=zlib\+([^&]+).+ 302 https://github.com/search?q=$1&type=users
+^https?:\/\/duckduckgo\.com\/\?q=([^&]+)\+zlib.+ 302 https://github.com/search?q=$1&type=users
 
 # twi   Twitter搜索
 ^https?:\/\/duckduckgo\.com\/\?q=twi\+([^&]+).+ 302 https://twitter.com/search?q=$1
