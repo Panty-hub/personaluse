@@ -22,15 +22,15 @@
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+wiki.+ 302 https://zh.wikipedia.org/wiki/$1
 
 # tmdb  TMDB搜索
-?https?:\/\/duckduckgo\.com\/\?q=tmdb\+([^&]+).+ 302 https://www.themoviedb.org/search?query=$1
+^https?:\/\/duckduckgo\.com\/\?q=tmdb\+([^&]+).+ 302 https://www.themoviedb.org/search?query=$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+tmdb.+ 302 https://www.themoviedb.org/search?query=$1
 
 # imdb  IMDB搜索
-?https?:\/\/duckduckgo\.com\/\?q=imdb\+([^&]+).+ 302 https://www.imdb.com/find/?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=imdb\+([^&]+).+ 302 https://www.imdb.com/find/?q=$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+imdb.+ 302 https://www.imdb.com/find/?q=$1
 
 # db    豆瓣搜索
-?https?:\/\/duckduckgo\.com\/\?q=db\+([^&]+).+ 302 https://www.douban.com/search?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=db\+([^&]+).+ 302 https://www.douban.com/search?q=$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+db.+ 302 https://www.douban.com/search?q=$1
 
 # zlib  Z-Library搜索
