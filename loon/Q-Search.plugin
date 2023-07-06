@@ -81,7 +81,7 @@
 ^https?:\/\/duckduckgo\.com\/\?q=ios\+([^&]+).+ 302 https://www.qimai.cn/search/index/search/$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+ios.+ 302 https://www.qimai.cn/search/index/search/$1
 
-# 引用自ddgksf2013
+# 引用自https://www.liangjianghu.com/searchads-appstore-switch
 # cn    切换至国区
 ^https?:\/\/duckduckgo\.com\/\?q=cn&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143465&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=cn&urlDesc=
 # hk    切换至港区
