@@ -97,7 +97,7 @@
 ?:\/\/duckduckgo\.com\/\?q=fq\+([^&]+).+ 302 https://fqys1.com/vodsearch/-------------.html?wd=$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+fq.+ 302 https://fqys1.com/vodsearch/-------------.html?wd=$1
 
-# dm    大米星球影视搜索https://dmxq.info/vodsearch/消失的她-------------.html
+# dm    大米星球影视搜索
 ?:\/\/duckduckgo\.com\/\?q=dm\+([^&]+).+ 302 https://dmxq.info/vodsearch/$1-------------.html
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+dm.+ 302 https://dmxq.info/vodsearch/$1-------------.html
 
