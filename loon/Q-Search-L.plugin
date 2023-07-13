@@ -1,0 +1,68 @@
+#!name = Q-Search-L快捷搜索
+#!desc = 在Safari中更改搜索引擎为DuckDuckGo再使用此插件,关键字在搜索内容前后都生效,此版本为L版,主要以影视、动漫、H为主
+#!author = 𝓶𝓲𝓼𝓪𝓴𝓲
+#!homepage = https://github.com/Panty-hub/personaluse
+#!icon = https://raw.githubusercontent.com/Panty-hub/personaluse/main/icon/Q-Search.png
+
+[Rewrite]
+# cbh   茶杯狐影视搜索
+^https?:\/\/duckduckgo\.com\/\?q=cbh\+([^&]+).+ 302 https://www.cupfox.app/s/$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+cbh.+ 302 https://www.cupfox.app/s/$1
+
+# 555   555影视搜索
+?:\/\/duckduckgo\.com\/\?q=555\+([^&]+).+ 302 https://www.555dianying.cc/vodsearch/-------------.html?wd=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+555.+ 302 https://www.555dianying.cc/vodsearch/-------------.html?wd=$1
+
+# ol    欧乐影视搜索
+?:\/\/duckduckgo\.com\/\?q=ol\+([^&]+).+ 302 https://www.olevod.com/index.php/vod/search.html?wd=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+ol.+ 302 https://www.olevod.com/index.php/vod/search.html?wd=$1
+
+# fq    番茄影视搜索
+?:\/\/duckduckgo\.com\/\?q=fq\+([^&]+).+ 302 https://fqys1.com/vodsearch/-------------.html?wd=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+fq.+ 302 https://fqys1.com/vodsearch/-------------.html?wd=$1
+
+# dm    大米星球影视搜索https://dmxq.info/vodsearch/消失的她-------------.html
+?:\/\/duckduckgo\.com\/\?q=dm\+([^&]+).+ 302 https://dmxq.info/vodsearch/$1-------------.html
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+dm.+ 302 https://dmxq.info/vodsearch/$1-------------.html
+
+# yh    樱花动漫搜索
+?:\/\/duckduckgo\.com\/\?q=yh\+([^&]+).+ 302 https://www.yhdmhy.com/search?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+yh.+ 302 https://www.yhdmhy.com/search?q=$1
+
+# 91    91搜索
+^https:\/\/duckduckgo.com\/\?q=91\+([^&]+).+ 302 https://91porn.com/search_result.php?search_id=$1
+^https:\/\/duckduckgo.com\/\?q=([^+]+)\+91.+ 302 https://91porn.com/search_result.php?search_id=$1
+
+# ph    pornhub搜索
+^https:\/\/duckduckgo.com\/\?q=ph\+([^&]+).+ 302 https://cn.pornhub.com/video/search?search=$1
+^https:\/\/duckduckgo.com\/\?q=([^+]+)\+ph.+ 302 https://cn.pornhub.com/video/search?search=$1
+
+# 51    51吃瓜搜索
+^https:\/\/duckduckgo.com\/\?q=51\+([^&]+).+ 302 https://51cg1.com/search/$1
+^https:\/\/duckduckgo.com\/\?q=([^+]+)\+51.+ 302 https://51cg1.com/search/$1
+
+# hl    黑料吃瓜搜索
+^https:\/\/duckduckgo.com\/\?q=hl\+([^&]+).+ 302 https://chigua2.com/search/$1/
+^https:\/\/duckduckgo.com\/\?q=([^+]+)\+hl.+ 302 https://chigua2.com/search/$1/
+
+# jab   jable搜索
+^https:\/\/duckduckgo.com\/\?q=jab\+([^&]+).+ 302 https://jable.tv/search/$1/
+^https:\/\/duckduckgo.com\/\?q=([^+]+)\+jab.+ 302 https://jable.tv/search/$1/
+
+# hm    haname搜索
+^https:\/\/duckduckgo.com\/\?q=hm\+([^&]+).+ 302 https://hanime1.me/search?query=$1
+^https:\/\/duckduckgo.com\/\?q=([^+]+)\+hm.+ 302 https://hanime1.me/search?query=$1
+
+# 91s   91短视频搜索
+^https:\/\/duckduckgo.com\/\?q=91s\+([^&]+).+ 302 https://cn1.91short.com/search?wd=$1
+^https:\/\/duckduckgo.com\/\?q=([^+]+)\+91s.+ 302 https://cn1.91short.com/search?wd=$1
+
+# bd    百度搜索
+^https?:\/\/duckduckgo\.com\/\?q=bd\+([^&]+).+ 302 https://www.baidu.com/s?wd=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^&]+)\+bd.+ 302 https://www.baidu.com/s?wd=$1
+
+# 无关键字默认为Google搜索
+^https?:\/\/duckduckgo\.com\/\?q=([^&]+).+ 302 https://www.google.com/search?q=$1
+
+[Mitm]
+hostname = duckduckgo.com
