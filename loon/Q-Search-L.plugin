@@ -86,23 +86,23 @@
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+cbh.+ 302 https://www.cupfox.app/s/$1
 
 # 555   555影视搜索
-?:\/\/duckduckgo\.com\/\?q=555\+([^&]+).+ 302 https://www.555dianying.cc/vodsearch/-------------.html?wd=$1
+^https?:\/\/duckduckgo\.com\/\?q=555\+([^&]+).+ 302 https://www.555dianying.cc/vodsearch/-------------.html?wd=$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+555.+ 302 https://www.555dianying.cc/vodsearch/-------------.html?wd=$1
 
 # ol    欧乐影视搜索
-?:\/\/duckduckgo\.com\/\?q=ol\+([^&]+).+ 302 https://www.olevod.com/index.php/vod/search.html?wd=$1
+^https?:\/\/duckduckgo\.com\/\?q=ol\+([^&]+).+ 302 https://www.olevod.com/index.php/vod/search.html?wd=$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+ol.+ 302 https://www.olevod.com/index.php/vod/search.html?wd=$1
 
 # fq    番茄影视搜索
-?:\/\/duckduckgo\.com\/\?q=fq\+([^&]+).+ 302 https://fqys1.com/vodsearch/-------------.html?wd=$1
+^https?:\/\/duckduckgo\.com\/\?q=fq\+([^&]+).+ 302 https://fqys1.com/vodsearch/-------------.html?wd=$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+fq.+ 302 https://fqys1.com/vodsearch/-------------.html?wd=$1
 
 # dm    大米星球影视搜索
-?:\/\/duckduckgo\.com\/\?q=dm\+([^&]+).+ 302 https://dmxq.info/vodsearch/$1-------------.html
+^https?:\/\/duckduckgo\.com\/\?q=dm\+([^&]+).+ 302 https://dmxq.info/vodsearch/$1-------------.html
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+dm.+ 302 https://dmxq.info/vodsearch/$1-------------.html
 
 # yh    樱花动漫搜索
-?:\/\/duckduckgo\.com\/\?q=yh\+([^&]+).+ 302 https://www.yhdmhy.com/search?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=yh\+([^&]+).+ 302 https://www.yhdmhy.com/search?q=$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+yh.+ 302 https://www.yhdmhy.com/search?q=$1
 
 # 91    91搜索
