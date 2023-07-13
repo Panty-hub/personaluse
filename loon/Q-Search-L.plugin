@@ -1,10 +1,86 @@
 #!name = Q-Search-L快捷搜索
-#!desc = 在Safari中更改搜索引擎为DuckDuckGo再使用此插件,关键字在搜索内容前后都生效,此版本为L版,主要以影视、动漫、H为主
+#!desc = 在Safari中更改搜索引擎为DuckDuckGo再使用此插件,关键字在搜索内容前后都生效,此版本为L版,融合了普通版+影视、动漫、H为主
 #!author = 𝓶𝓲𝓼𝓪𝓴𝓲
 #!homepage = https://github.com/Panty-hub/personaluse
 #!icon = https://raw.githubusercontent.com/Panty-hub/personaluse/main/icon/Q-Search.png
 
 [Rewrite]
+# bing  Bing搜索
+^https?:\/\/duckduckgo\.com\/\?q=bing\+([^&]+).+ 302 https://www.bing.com/search?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+bing.+ 302 https://www.bing.com/search?q=$1
+
+# bd    百度搜索
+^https?:\/\/duckduckgo\.com\/\?q=bd\+([^&]+).+ 302 https://www.baidu.com/s?wd=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^&]+)\+bd.+ 302 https://www.baidu.com/s?wd=$1
+
+# gh    GitHub搜索
+^https?:\/\/duckduckgo\.com\/\?q=gh\+([^&]+).+ 302 https://github.com/search?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^&]+)\+gh.+ 302 https://github.com/search?q=$1
+
+# wiki  Wiki搜索
+^https?:\/\/duckduckgo\.com\/\?q=wiki\+([^&]+).+ 302 https://zh.wikipedia.org/wiki/$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+wiki.+ 302 https://zh.wikipedia.org/wiki/$1
+
+# tmdb  TMDB搜索
+^https?:\/\/duckduckgo\.com\/\?q=tmdb\+([^&]+).+ 302 https://www.themoviedb.org/search?query=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+tmdb.+ 302 https://www.themoviedb.org/search?query=$1
+
+# imdb  IMDB搜索
+^https?:\/\/duckduckgo\.com\/\?q=imdb\+([^&]+).+ 302 https://www.imdb.com/find/?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+imdb.+ 302 https://www.imdb.com/find/?q=$1
+
+# db    豆瓣搜索
+^https?:\/\/duckduckgo\.com\/\?q=db\+([^&]+).+ 302 https://www.douban.com/search?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+db.+ 302 https://www.douban.com/search?q=$1
+
+# zlib  Z-Library搜索
+^https?:\/\/duckduckgo\.com\/\?q=zlib\+([^&]+).+ 302 https://zlibrary-asia.se/s/$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+zlib.+ 302 https://zlibrary-asia.se/s/$1
+
+# ghu   GitHub用户搜索
+^https?:\/\/duckduckgo\.com\/\?q=ghu\+([^&]+).+ 302 https://github.com/search?q=$1&type=users
+^https?:\/\/duckduckgo\.com\/\?q=([^&]+)\+ghu.+ 302 https://github.com/search?q=$1&type=users
+
+# twi   Twitter搜索
+^https?:\/\/duckduckgo\.com\/\?q=twi\+([^&]+).+ 302 https://twitter.com/search?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+twi.+ 302 https://twitter.com/search?q=$1
+
+# ytb   YouTube搜索
+^https?:\/\/duckduckgo\.com\/\?q=ytb\+([^&]+).+ 302 https://www.youtube.com/results?search_query=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+ytb.+ 302 https://www.youtube.com/results?search_query=$1
+
+# bili  BiliBili搜索
+^https?:\/\/duckduckgo\.com\/\?q=bili\+([^&]+).+ 302 https://m.bilibili.com/search?keyword=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+bili.+ 302 https://m.bilibili.com/search?keyword=$1
+
+# vb    微博搜索
+^https?:\/\/duckduckgo\.com\/\?q=vb\+([^&]+).+ 302 https://s.weibo.com/weibo/$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+vb.+ 302 https://s.weibo.com/weibo/$1
+
+# vx    微信搜索
+^https?:\/\/duckduckgo\.com\/\?q=wx\+([^&]+).+ 302 https://weixin.sogou.com/weixinwap?query=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+wx.+ 302 https://weixin.sogou.com/weixinwap?query=$1
+
+# zh    知乎搜索
+^https?:\/\/duckduckgo\.com\/\?q=zh\+([^&]+).+ 302 http://www.zhihu.com/search?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+zh.+ 302 http://www.zhihu.com/search?q=$1
+
+# jd    京东搜索
+^https?:\/\/duckduckgo\.com\/\?q=jd\+([^&]+).+ 302 https://so.m.jd.com/ware/search.action?keyword=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+jd.+ 302 https://so.m.jd.com/ware/search.action?keyword=$1
+
+# tb    淘宝搜索
+^https?:\/\/duckduckgo\.com\/\?q=tb\+([^&]+).+ 302 https://s.m.taobao.com/h5?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+tb.+ 302 https://s.m.taobao.com/h5?q=$1
+
+# yh    油猴搜索
+^https?:\/\/duckduckgo\.com\/\?q=yh\+([^&]+).+ 302 https://greasyfork.org/zh-CN/scripts?q=$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+yh.+ 302 https://greasyfork.org/zh-CN/scripts?q=$1
+
+# ios   苹果应用搜索
+^https?:\/\/duckduckgo\.com\/\?q=ios\+([^&]+).+ 302 https://www.qimai.cn/search/index/search/$1
+^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+ios.+ 302 https://www.qimai.cn/search/index/search/$1
+
 # cbh   茶杯狐影视搜索
 ^https?:\/\/duckduckgo\.com\/\?q=cbh\+([^&]+).+ 302 https://www.cupfox.app/s/$1
 ^https?:\/\/duckduckgo\.com\/\?q=([^+]+)\+cbh.+ 302 https://www.cupfox.app/s/$1
@@ -57,9 +133,23 @@
 ^https:\/\/duckduckgo.com\/\?q=91s\+([^&]+).+ 302 https://cn1.91short.com/search?wd=$1
 ^https:\/\/duckduckgo.com\/\?q=([^+]+)\+91s.+ 302 https://cn1.91short.com/search?wd=$1
 
-# bd    百度搜索
-^https?:\/\/duckduckgo\.com\/\?q=bd\+([^&]+).+ 302 https://www.baidu.com/s?wd=$1
-^https?:\/\/duckduckgo\.com\/\?q=([^&]+)\+bd.+ 302 https://www.baidu.com/s?wd=$1
+# 引用自https://www.liangjianghu.com/searchads-appstore-switch
+# cn    切换至国区
+^https?:\/\/duckduckgo\.com\/\?q=cn&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143465&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=cn&urlDesc=
+# hk    切换至港区
+^https?:\/\/duckduckgo\.com\/\?q=hk&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143463&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=hk&urlDesc=
+# tw    切换至台区
+^https?:\/\/duckduckgo\.com\/\?q=tw&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143470&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=tw&urlDesc=
+# us    切换至美区
+^https?:\/\/duckduckgo\.com\/\?q=us&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143441&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=us&urlDesc=
+# jp    切换至日区
+^https?:\/\/duckduckgo\.com\/\?q=jp&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143462&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=jp&urlDesc=
+# kr    切换至韩区
+^https?:\/\/duckduckgo\.com\/\?q=kr&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143466&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=kr&urlDesc=
+# tr    切换至土区
+^https?:\/\/duckduckgo\.com\/\?q=tr&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143480&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=tr&urlDesc=
+# sg    切换至新区
+^https?:\/\/duckduckgo\.com\/\?q=sg&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143464&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=tr&urlDesc=
 
 # 无关键字默认为Google搜索
 ^https?:\/\/duckduckgo\.com\/\?q=([^&]+).+ 302 https://www.google.com/search?q=$1
