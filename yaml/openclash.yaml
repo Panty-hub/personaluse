@@ -43,7 +43,7 @@ proxy-providers:
     type: http
     url: "https://sub.ops.ci/sub?target=clash&url=你的订阅链接&append_type=true&list=true&tfo=true&udp=false"
     interval: 86400
-    path: ./sub.yaml
+    path: ./profiles/sub.yaml
     health-check:
       enable: true
       interval: 600
@@ -51,7 +51,7 @@ proxy-providers:
 
   HK:
     type: file
-    path: ./sub.yaml
+    path: ./profiles/sub.yaml
     filter: 港|HK|(?i)Hong
     health-check:
       enable: true
@@ -59,7 +59,7 @@ proxy-providers:
       url: http://www.apple.com/library/test/success.html
   JP:
     type: file
-    path: ./sub.yaml
+    path: ./profiles/sub.yaml
     filter: 日|东京|JP|(?i)Japan
     health-check:
       enable: true
@@ -67,7 +67,7 @@ proxy-providers:
       url: http://www.apple.com/library/test/success.html
   US:
     type: file
-    path: ./sub.yaml
+    path: ./profiles/sub.yaml
     filter: 美|US|(?i)States|America
     health-check:
       enable: true
@@ -75,7 +75,7 @@ proxy-providers:
       url: http://www.apple.com/library/test/success.html
   TW:
     type: file
-    path: ./sub.yaml
+    path: ./profiles/sub.yaml
     filter: 台|湾|TW|(?i)Taiwan
     health-check:
       enable: true
@@ -83,7 +83,7 @@ proxy-providers:
       url: http://www.apple.com/library/test/success.html
   SG:
     type: file
-    path: ./sub.yaml
+    path: ./profiles/sub.yaml
     filter: 新|狮|獅|SG|(?i)Singapor
     health-check:
       enable: true
@@ -300,18 +300,6 @@ proxy-groups:
       - 🇨🇳 TW
       - 🇸🇬 SG
       - DIRECT
-   
-  - name: 🌏 China_Extra
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
 
   - name: 🌏 Global
     type: select
@@ -501,13 +489,6 @@ rule-providers:
     path: ./ruleset/China.yaml
     interval: 86400
     
-  China_Extra:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/Panty-hub/personaluse/main/yaml/direct.yaml"
-    path: ./ruleset/China_Extra.yaml
-    interval: 86400
-
   Global:
     type: http
     behavior: classical
@@ -536,7 +517,6 @@ rules:
   - RULE-SET,Game,🎮 Game
   - RULE-SET,Cloudflare,🌏 Cloudflare
   - RULE-SET,China,🌏 China
-  - RULE-SET,China_Extra,🌏 China_Extra
   - RULE-SET,Global,🌏 Global
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
