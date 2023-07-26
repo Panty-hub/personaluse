@@ -1,1 +1,154 @@
+#!name = Q-Search-Beta
+#!desc = 测试版
+#!author = 𝓶𝓲𝓼𝓪𝓴𝓲
+#!homepage = https://github.com/Panty-hub/personaluse
 
+[Rewrite]
+# bing  Bing搜索
+^https?:\/\/google\.com\/search\?q=bing\+([^&]+).+ 302 https://www.bing.com/search?q=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+bing.+ 302 https://www.bing.com/search?q=$1
+
+# bd    百度搜索
+^https?:\/\/google\.com\/search\?q=bd\+([^&]+).+ 302 https://www.baidu.com/s?wd=$1
+^https?:\/\/google\.com\/search\?q=([^&]+)\+bd.+ 302 https://www.baidu.com/s?wd=$1
+
+# gh    GitHub搜索
+^https?:\/\/google\.com\/search\?q=gh\+([^&]+).+ 302 https://github.com/search?q=$1
+^https?:\/\/google\.com\/search\?q=([^&]+)\+gh.+ 302 https://github.com/search?q=$1
+
+# wiki  Wiki搜索
+^https?:\/\/google\.com\/search\?q=wiki\+([^&]+).+ 302 https://zh.wikipedia.org/wiki/$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+wiki.+ 302 https://zh.wikipedia.org/wiki/$1
+
+# tmdb  TMDB搜索
+^https?:\/\/google\.com\/search\?q=tmdb\+([^&]+).+ 302 https://www.themoviedb.org/search?query=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+tmdb.+ 302 https://www.themoviedb.org/search?query=$1
+
+# imdb  IMDB搜索
+^https?:\/\/google\.com\/search\?q=imdb\+([^&]+).+ 302 https://www.imdb.com/find/?q=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+imdb.+ 302 https://www.imdb.com/find/?q=$1
+
+# db    豆瓣搜索
+^https?:\/\/google\.com\/search\?q=db\+([^&]+).+ 302 https://www.douban.com/search?q=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+db.+ 302 https://www.douban.com/search?q=$1
+
+# zlib  Z-Library搜索
+^https?:\/\/google\.com\/search\?q=zlib\+([^&]+).+ 302 https://zlibrary-asia.se/s/$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+zlib.+ 302 https://zlibrary-asia.se/s/$1
+
+# ghu   GitHub用户搜索
+^https?:\/\/google\.com\/search\?q=ghu\+([^&]+).+ 302 https://github.com/search?q=$1&type=users
+^https?:\/\/google\.com\/search\?q=([^&]+)\+ghu.+ 302 https://github.com/search?q=$1&type=users
+
+# twi   Twitter搜索
+^https?:\/\/google\.com\/search\?q=twi\+([^&]+).+ 302 https://twitter.com/search?q=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+twi.+ 302 https://twitter.com/search?q=$1
+
+# ytb   YouTube搜索
+^https?:\/\/google\.com\/search\?q=ytb\+([^&]+).+ 302 https://www.youtube.com/results?search_query=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+ytb.+ 302 https://www.youtube.com/results?search_query=$1
+
+# bili  BiliBili搜索
+^https?:\/\/google\.com\/search\?q=bili\+([^&]+).+ 302 https://m.bilibili.com/search?keyword=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+bili.+ 302 https://m.bilibili.com/search?keyword=$1
+
+# vb    微博搜索
+^https?:\/\/google\.com\/search\?q=vb\+([^&]+).+ 302 https://s.weibo.com/weibo/$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+vb.+ 302 https://s.weibo.com/weibo/$1
+
+# vx    微信搜索
+^https?:\/\/google\.com\/search\?q=wx\+([^&]+).+ 302 https://weixin.sogou.com/weixinwap?query=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+wx.+ 302 https://weixin.sogou.com/weixinwap?query=$1
+
+# zh    知乎搜索
+^https?:\/\/google\.com\/search\?q=zh\+([^&]+).+ 302 http://www.zhihu.com/search?q=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+zh.+ 302 http://www.zhihu.com/search?q=$1
+
+# jd    京东搜索
+^https?:\/\/google\.com\/search\?q=jd\+([^&]+).+ 302 https://so.m.jd.com/ware/search.action?keyword=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+jd.+ 302 https://so.m.jd.com/ware/search.action?keyword=$1
+
+# tb    淘宝搜索
+^https?:\/\/google\.com\/search\?q=tb\+([^&]+).+ 302 https://s.m.taobao.com/h5?q=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+tb.+ 302 https://s.m.taobao.com/h5?q=$1
+
+# yh    油猴搜索
+^https?:\/\/google\.com\/search\?q=yh\+([^&]+).+ 302 https://greasyfork.org/zh-CN/scripts?q=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+yh.+ 302 https://greasyfork.org/zh-CN/scripts?q=$1
+
+# ios   苹果应用搜索
+^https?:\/\/google\.com\/search\?q=ios\+([^&]+).+ 302 https://www.qimai.cn/search/index/search/$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+ios.+ 302 https://www.qimai.cn/search/index/search/$1
+
+# cbh   茶杯狐影视搜索
+^https?:\/\/google\.com\/search\?q=cbh\+([^&]+).+ 302 https://www.cupfox.app/s/$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+cbh.+ 302 https://www.cupfox.app/s/$1
+
+# 555   555影视搜索
+^https?:\/\/google\.com\/search\?q=555\+([^&]+).+ 302 https://www.555dianying.cc/vodsearch/-------------.html?wd=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+555.+ 302 https://www.555dianying.cc/vodsearch/-------------.html?wd=$1
+
+# ol    欧乐影视搜索
+^https?:\/\/google\.com\/search\?q=ol\+([^&]+).+ 302 https://www.olevod.com/index.php/vod/search.html?wd=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+ol.+ 302 https://www.olevod.com/index.php/vod/search.html?wd=$1
+
+# fq    番茄影视搜索
+^https?:\/\/google\.com\/search\?q=fq\+([^&]+).+ 302 https://fqys1.com/vodsearch/-------------.html?wd=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+fq.+ 302 https://fqys1.com/vodsearch/-------------.html?wd=$1
+
+# dm    大米星球影视搜索
+^https?:\/\/google\.com\/search\?q=dm\+([^&]+).+ 302 https://dmxq.info/vodsearch/$1-------------.html
+^https?:\/\/google\.com\/search\?q=([^+]+)\+dm.+ 302 https://dmxq.info/vodsearch/$1-------------.html
+
+# yh    樱花动漫搜索
+^https?:\/\/google\.com\/search\?q=yh\+([^&]+).+ 302 https://www.yhdmhy.com/search?q=$1
+^https?:\/\/google\.com\/search\?q=([^+]+)\+yh.+ 302 https://www.yhdmhy.com/search?q=$1
+
+# 91    91搜索
+^https:\/\/google\.com\/search\?q=91\+([^&]+).+ 302 https://91porn.com/search_result.php?search_id=$1
+^https:\/\/google\.com\/search\?q=([^+]+)\+91.+ 302 https://91porn.com/search_result.php?search_id=$1
+
+# ph    pornhub搜索
+^https:\/\/google\.com\/search\?q=ph\+([^&]+).+ 302 https://cn.pornhub.com/video/search?search=$1
+^https:\/\/google\.com\/search\?q=([^+]+)\+ph.+ 302 https://cn.pornhub.com/video/search?search=$1
+
+# 51    51吃瓜搜索
+^https:\/\/google\.com\/search\?q=51\+([^&]+).+ 302 https://51cg1.com/search/$1
+^https:\/\/google\.com\/search\?q=([^+]+)\+51.+ 302 https://51cg1.com/search/$1
+
+# hl    黑料吃瓜搜索
+^https:\/\/google\.com\/search\?q=hl\+([^&]+).+ 302 https://chigua2.com/search/$1/
+^https:\/\/google\.com\/search\?q=([^+]+)\+hl.+ 302 https://chigua2.com/search/$1/
+
+# jab   jable搜索
+^https:\/\/google\.com\/search\?q=jab\+([^&]+).+ 302 https://jable.tv/search/$1/
+^https:\/\/google\.com\/search\?q=([^+]+)\+jab.+ 302 https://jable.tv/search/$1/
+
+# hm    haname搜索
+^https:\/\/google\.com\/search\?q=hm\+([^&]+).+ 302 https://hanime1.me/search?query=$1
+^https:\/\/google\.com\/search\?q=([^+]+)\+hm.+ 302 https://hanime1.me/search?query=$1
+
+# 91s   91短视频搜索
+^https:\/\/google\.com\/search\?q=91s\+([^&]+).+ 302 https://cn1.91short.com/search?wd=$1
+^https:\/\/google\.com\/search\?q=([^+]+)\+91s.+ 302 https://cn1.91short.com/search?wd=$1
+
+# 引用自https://www.liangjianghu.com/searchads-appstore-switch
+# cn    切换至国区
+^https?:\/\/google\.com\/search\?q=cn&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143465&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=cn&urlDesc=
+# hk    切换至港区
+^https?:\/\/google\.com\/search\?q=hk&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143463&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=hk&urlDesc=
+# tw    切换至台区
+^https?:\/\/google\.com\/search\?q=tw&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143470&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=tw&urlDesc=
+# us    切换至美区
+^https?:\/\/google\.com\/search\?q=us&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143441&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=us&urlDesc=
+# jp    切换至日区
+^https?:\/\/google\.com\/search\?q=jp&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143462&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=jp&urlDesc=
+# kr    切换至韩区
+^https?:\/\/google\.com\/search\?q=kr&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143466&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=kr&urlDesc=
+# tr    切换至土区
+^https?:\/\/google\.com\/search\?q=tr&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143480&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=tr&urlDesc=
+# sg    切换至新区
+^https?:\/\/google\.com\/search\?q=sg&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143464&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=tr&urlDesc=
+
+[Mitm]
+hostname = duckduckgo.com
