@@ -110,28 +110,28 @@
 ^https:\/\/duckduckgo.com\/\?q=([^+]+)\+91.+ 302 https://91porn.com/search_result.php?search_id=$1
 
 # ph    pornhub搜索
-^https:\/\/duckduckgo.com\/\?q=ph\+([^&]+).+ 302 https://cn.pornhub.com/video/search?search=$1
-^https:\/\/duckduckgo.com\/\?q=([^+]+)\+ph.+ 302 https://cn.pornhub.com/video/search?search=$1
+^https:\/\/duckduckgo\.com\/\?q=ph\+([^&]+).+ 302 https://cn.pornhub.com/video/search?search=$1
+^https:\/\/duckduckgo\.com\/\?q=([^+]+)\+ph.+ 302 https://cn.pornhub.com/video/search?search=$1
 
 # 51    51吃瓜搜索
-^https:\/\/duckduckgo.com\/\?q=51\+([^&]+).+ 302 https://51cg1.com/search/$1
-^https:\/\/duckduckgo.com\/\?q=([^+]+)\+51.+ 302 https://51cg1.com/search/$1
+^https:\/\/duckduckgo\.com\/\?q=51\+([^&]+).+ 302 https://51cg1.com/search/$1
+^https:\/\/duckduckgo\.com\/\?q=([^+]+)\+51.+ 302 https://51cg1.com/search/$1
 
 # hl    黑料吃瓜搜索
-^https:\/\/duckduckgo.com\/\?q=hl\+([^&]+).+ 302 https://chigua2.com/search/$1/
-^https:\/\/duckduckgo.com\/\?q=([^+]+)\+hl.+ 302 https://chigua2.com/search/$1/
+^https:\/\/duckduckgo\.com\/\?q=hl\+([^&]+).+ 302 https://chigua2.com/search/$1/
+^https:\/\/duckduckgo\.com\/\?q=([^+]+)\+hl.+ 302 https://chigua2.com/search/$1/
 
 # jab   jable搜索
-^https:\/\/duckduckgo.com\/\?q=jab\+([^&]+).+ 302 https://jable.tv/search/$1/
-^https:\/\/duckduckgo.com\/\?q=([^+]+)\+jab.+ 302 https://jable.tv/search/$1/
+^https:\/\/duckduckgo\.com\/\?q=jab\+([^&]+).+ 302 https://jable.tv/search/$1/
+^https:\/\/duckduckgo\.com\/\?q=([^+]+)\+jab.+ 302 https://jable.tv/search/$1/
 
 # hm    haname搜索
-^https:\/\/duckduckgo.com\/\?q=hm\+([^&]+).+ 302 https://hanime1.me/search?query=$1
-^https:\/\/duckduckgo.com\/\?q=([^+]+)\+hm.+ 302 https://hanime1.me/search?query=$1
+^https:\/\/duckduckgo\.com\/\?q=hm\+([^&]+).+ 302 https://hanime1.me/search?query=$1
+^https:\/\/duckduckgo\.com\/\?q=([^+]+)\+hm.+ 302 https://hanime1.me/search?query=$1
 
 # 91s   91短视频搜索
-^https:\/\/duckduckgo.com\/\?q=91s\+([^&]+).+ 302 https://cn1.91short.com/search?wd=$1
-^https:\/\/duckduckgo.com\/\?q=([^+]+)\+91s.+ 302 https://cn1.91short.com/search?wd=$1
+^https:\/\/duckduckgo\.com\/\?q=91s\+([^&]+).+ 302 https://cn1.91short.com/search?wd=$1
+^https:\/\/duckduckgo\.com\/\?q=([^+]+)\+91s.+ 302 https://cn1.91short.com/search?wd=$1
 
 # 引用自https://www.liangjianghu.com/searchads-appstore-switch
 # cn    切换至国区
