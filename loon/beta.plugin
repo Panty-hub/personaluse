@@ -151,4 +151,4 @@
 ^https?:\/\/google\.com\/search\?q=sg&.+ 302 https://itunes.apple.com/WebObjects/MZStore.woa/wa/resetAndRedirect?dsf=143464&mt=8&url=/WebObjects/MZStore.woa/wa/viewSoftware?mt=8&id=1108187390&cc=tr&urlDesc=
 
 [Mitm]
-hostname = duckduckgo.com
+hostname = google.com
