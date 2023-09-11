@@ -1,17 +1,55 @@
 mixed-port: 7890
+redir-port: 9797
+tproxy-port: 9898
 allow-lan: true
-bind-address: '*'
 mode: rule
-log-level: info
+geodata-mode: true
+unified-delay: true
+log-level: silent
 ipv6: false
-external-controller: 127.0.0.1:9090
+external-controller: 127.0.0.1:9999
+# external-ui: dashboard
+secret: ""
+enable-process: true
+find-process-mode: strict
+#tcp-concurrent: true
+global-client-fingerprint: chrome
+
+geox-url:
+  geoip: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat"
+  geosite: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat"
+  mmdb: "https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb"
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+sniffer:
+  enable: false
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+
+tun:
+  enable: false
+  device: tun3
+  stack: system
+  inet6-address: 
+  dns-hijack:
+    - 'any:53'
+  auto-route: true
+  auto-detect-interface: true
 
 dns:
   enable: true
   ipv6: false
-  listen: 0.0.0.0:53
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  listen: 0.0.0.0:1053
+  enhanced-mode: redir-host
+  fake-ip-range: 28.0.0.0/8
+  use-hosts: true
   fake-ip-filter:
     - "*.lan"
     - localhost.ptlogin2.qq.com
@@ -38,485 +76,150 @@ dns:
     geoip-code: CN
     ipcidr:
       - 240.0.0.0/4
+
+p: &p
+  {type: http, interval: 3600, health-check: {enable: true, url: http://www.apple.com/library/test/success.html, interval: 300}}
+pr: &pr
+  {type: select, proxies: [🚀 Manual, ✈️ Auto, 🇭🇰 HK, 🇨🇳 TW, 🇸🇬 SG, 🇯🇵 JP, 🇺🇲 US, 🏴‍☠️ ETC, DIRECT]}
+
+u: &u
+  type: select
+  use:
+  - provider
+
+rp: &rp
+  {type: http, behavior: classical, interval: 86400}
+
+proxies:
+
+
+# 在url引号内将文字删除并放上自己的订阅链接
 proxy-providers:
-  Sub:
-    type: http
-    url: "https://sub.ops.ci/sub?target=clash&url=你的订阅链接&append_type=true&list=true&tfo=true&udp=false"
-    interval: 86400
-    path: ./profiles/sub.yaml
-    health-check:
-      enable: true
-      interval: 600
-      url: http://www.apple.com/library/test/success.html
+  provider: {<<: *p, url: "你的订阅链接", path: ./proxy_providers/provider.yaml}
 
-  HK:
-    type: file
-    path: ./profiles/sub.yaml
-    filter: 港|HK|(?i)Hong
-    health-check:
-      enable: true
-      interval: 120
-      url: http://www.apple.com/library/test/success.html
-  JP:
-    type: file
-    path: ./profiles/sub.yaml
-    filter: 日|东京|JP|(?i)Japan
-    health-check:
-      enable: true
-      interval: 120
-      url: http://www.apple.com/library/test/success.html
-  US:
-    type: file
-    path: ./profiles/sub.yaml
-    filter: 美|US|(?i)States|America
-    health-check:
-      enable: true
-      interval: 120
-      url: http://www.apple.com/library/test/success.html
-  TW:
-    type: file
-    path: ./profiles/sub.yaml
-    filter: 台|湾|TW|(?i)Taiwan
-    health-check:
-      enable: true
-      interval: 120
-      url: http://www.apple.com/library/test/success.html
-  SG:
-    type: file
-    path: ./profiles/sub.yaml
-    filter: 新|狮|獅|SG|(?i)Singapor
-    health-check:
-      enable: true
-      interval: 120
-      url: http://www.apple.com/library/test/success.html
-    
 proxy-groups:
-  - name: 🚀 Manual
-    type: select
-    use:
-      - Sub
 
-  - name: ✈️ Auto
-    type: url-test
-    use:
-      - Sub
-    url: "http://www.apple.com/library/test/success.html"
-    interval: 120
+  - {name: 🆎 AdBlock, type: select, proxies: [REJECT,DIRECT]}
+  - {name: 🌌 Google, <<: *pr}
 
-  - name: 🆎 AdBlock
-    type: select
-    proxies:
-      - REJECT
-      - 🚀 Manual
+  - {name: 🕸️ GitHub, <<: *pr}
 
-  - name: 📞 GoogleVoice
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 📃 Wiki, <<: *pr}
 
-  - name: 🔍 Google
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 🐦 Twitter, <<: *pr}
 
-  - name: 🕸️ GitHub
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 🎬 YouTube, <<: *pr}
 
-  - name: 🐦 Twitter
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 📟 Telegram, <<: *pr}
 
-  - name: 🎬 YouTube
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 🏅 Nike, <<: *pr}
 
-  - name: 📲 Telegram
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 🎶 Spotify, <<: *pr}
 
-  - name: 🎶 Spotify
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 🎬 Emby, <<: *pr}
 
-  - name: 🎬 Emby
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 📺 BiliBili, <<: *pr}
 
-  - name: 🎬 BiliBili
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
-      
-  - name: 📐 Speedtest
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
-   
-  - name: 🌏 OpenAi
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 📐 Speedtest, <<: *pr}
 
-  - name: 🍎 Apple
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 🤖 AI, <<: *pr}
 
-  - name: 🧩 Microsoft
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 🍎 Apple, <<: *pr}
 
-  - name: 🎮 Game
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
-      
-  - name: 🌏 Cloudflare
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
-      
-  - name: 🌏 China
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 🧩 Microsoft, <<: *pr}
 
-  - name: 🌏 Global
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 🎮 Game, <<: *pr}
 
-  - name: 🐟 Final
-    type: select
-    proxies:
-      - 🚀 Manual
-      - ✈️ Auto
-      - 🇭🇰 HK
-      - 🇯🇵 JP
-      - 🇺🇲 US
-      - 🇨🇳 TW
-      - 🇸🇬 SG
-      - DIRECT
+  - {name: 🇨🇳 China, type: select, proxies: [DIRECT, 🚀 Manual,✈️ Auto,🇭🇰 HK,🇨🇳 TW,🇸🇬 SG,🇯🇵 JP,🇺🇲 US,🏴‍☠️ ETC]}
 
-  - name: 🇭🇰 HK
-    type: url-test
-    use:
-      - HK
-    url: "http://www.apple.com/library/test/success.html"
-    interval: 120
+  - {name: 🌏 Global, <<: *pr}
 
-  - name: 🇯🇵 JP
-    type: url-test
-    use:
-      - JP
-    url: "http://www.apple.com/library/test/success.html"
-    interval: 120
+  - {name: 🐟 Final, <<: *pr}
 
-  - name: 🇨🇳 TW
-    type: url-test
-    use:
-      - TW
-    url: "http://www.apple.com/library/test/success.html"
-    interval: 120
+# 分隔，下面是地区分组
+  - {name: 🚀 Manual, <<: *u}
 
-  - name: 🇸🇬 SG
-    type: url-test
-    use:
-      - SG
-    url: "http://www.apple.com/library/test/success.html"
-    interval: 120
+  - {name: ✈️ Auto, <<: *u, tolerance: 2, type: url-test}
 
-  - name: 🇺🇲 US
-    type: url-test
-    use:
-      - US
-    url: "http://www.apple.com/library/test/success.html"
-    interval: 120
+  - {name: 🇭🇰 HK, <<: *u,filter: "(?i)港|hk|hongkong|hong kong"}
 
+  - {name: 🇨🇳 TW, <<: *u, filter: "(?i)台|tw|taiwan"}
 
+  - {name: 🇯🇵 JP, <<: *u, filter: "(?i)日本|jp|japan"}
+
+  - {name: 🇺🇲 US, <<: *u, filter: "(?i)美|us|unitedstates|united states"}
+
+  - {name: 🇸🇬 SG, <<: *u, filter: "(?i)^(?!.*(?:us)).*(新|sg|singapore)"}
+
+  - {name: 🏴‍☠️ ETC, <<: *u, filter: "(?i)^(?!.*(?:🇭🇰|🇯🇵|🇺🇸|🇸🇬|🇨🇳|港|hk|hongkong|台|tw|taiwan|日|jp|japan|新|sg|singapore|美|us|unitedstates)).*"}
 
 rule-providers:
-  Direct:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml"
-    path: ./ruleset/direct.yaml
-    interval: 86400
+  Direct: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml", path: ./ruleset/direct.yaml}
 
-  AdBlock:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising.yaml"
-    path: ./ruleset/Advertising.yaml
-    interval: 86400
+  adblock: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising.yaml", path: ./ruleset/Advertising.yaml}
 
-  GoogleVoice:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GoogleVoice/GoogleVoice.yaml"
-    path: ./ruleset/GoogleVoice.yaml
-    interval: 86400
+  httpdnsblock: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BlockHttpDNS/BlockHttpDNS.yaml", path: ./ruleset/httpdnsblock.yaml}
 
-  Google:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml"
-    path: ./ruleset/Google.yaml
-    interval: 86400
+  Google: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml", path: ./ruleset/Google.yaml}
 
-  GitHub:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml"
-    path: ./ruleset/GitHub.yaml
-    interval: 86400
+  GitHub: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml", path: ./ruleset/GitHub.yaml}
 
-  Twitter:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml"
-    path: ./ruleset/Twitter.yaml
-    interval: 86400
+  Wiki: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Wikipedia/Wikipedia.yaml", path: ./ruleset/Wiki.yaml}
 
-  YouTube:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml"
-    path: ./ruleset/YouTube.yaml
-    interval: 86400
+  Twitter: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml", path: ./ruleset/Twitter.yaml}
 
-  Telegram:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml"
-    path: ./ruleset/Telegram.yaml
-    interval: 86400
+  YouTube: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml", path: ./ruleset/YouTube.yaml}
 
-  Spotify:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml"
-    path: ./ruleset/Spotify.yaml
-    interval: 86400
+  Telegram: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml", path: ./ruleset/Telegram.yaml}
 
-  Emby:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/Panty-hub/personaluse/main/yaml/Emby.yaml"
-    path: ./ruleset/Emby.yaml
-    interval: 86400
+  Nike: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nike/Nike.yaml", path: ./ruleset/Nike.yaml}
 
-  BiliBili:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml"
-    path: ./ruleset/BiliBili.yaml
-    interval: 86400
+  Spotify: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml", path: ./ruleset/Spotify.yaml}
 
-  Speedtest:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest.yaml"
-    path: ./ruleset/Speedtest.yaml
-    interval: 86400
+  Emby: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/Panty-hub/personaluse/main/yaml/Emby.yaml", path: ./ruleset/Emby.yaml}
 
-  OpenAi:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
-    path: ./ruleset/OpenAi.yaml
-    interval: 86400
-  
-  Apple:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"
-    path: ./ruleset/Apple.yaml
-    interval: 86400
-  
-  Microsoft:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml"
-    path: ./ruleset/Microsoft.yaml
-    interval: 86400
+  BiliBili: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml", path: ./ruleset/BiliBili.yaml}
 
-  Game:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.yaml"
-    path: ./ruleset/Game.yaml
-    interval: 86400
-    
-  Cloudflare:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Cloudflare/Cloudflare.yaml"
-    path: ./ruleset/Cloudflare.yaml
-    interval: 86400
+  Speedtest: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Speedtest/Speedtest.yaml", path: ./ruleset/Speedtest.yaml}
 
-  China:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.yaml"
-    path: ./ruleset/China.yaml
-    interval: 86400
-    
-  Global:
-    type: http
-    behavior: classical
-    url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global.yaml"
-    path: ./ruleset/Globall.yaml
-    interval: 86400
+  Ai: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/Panty-hub/personaluse/main/yaml/ai.yaml", path: ./ruleset/Ai.yaml}
 
+  Apple: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml", path: ./ruleset/Apple.yaml}
 
+  Microsoft: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml", path: ./ruleset/Microsoft.yaml}
+
+  Game: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.yaml", path: ./ruleset/Game.yaml}
+
+  China: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.yaml", path: ./ruleset/China.yaml}
+
+  Global: {<<: *rp, url: "https://ghproxy.com/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global.yaml", path: ./ruleset/Globall.yaml}
 
 rules:
+  - AND,((NETWORK,udp),(OR,((DST-PORT,443/80),(GEOSITE,youtube)))),REJECT
+  - AND,((NETWORK,udp),(GEOSITE,youtube)),REJECT
+  - AND,((NETWORK,UDP),(DST-PORT,123)),DIRECT
+  - DST-PORT,123/136/137-139,DIRECT,udp
+  - AND,((PROCESS-NAME,clash),(NOT,((IN-TYPE,inner)))),REJECT
+  - IN-TYPE,inner,🐟 Final
   - RULE-SET,Direct,DIRECT
-  - RULE-SET,AdBlock,🆎 AdBlock
-  - RULE-SET,GoogleVoice,📞 GoogleVoice
-  - RULE-SET,Google,🔍 Google
+  - RULE-SET,adblock,🆎 AdBlock
+  - RULE-SET,httpdnsblock,🆎 AdBlock
+  - RULE-SET,Google,🌌 Google
   - RULE-SET,GitHub,🕸️ GitHub
+  - RULE-SET,Wiki,📃 Wiki
   - RULE-SET,Twitter,🐦 Twitter
   - RULE-SET,YouTube,🎬 YouTube
-  - RULE-SET,Telegram,📲 Telegram
+  - RULE-SET,Telegram,📟 Telegram
+  - RULE-SET,Nike,🏅 Nike
   - RULE-SET,Spotify,🎶 Spotify
   - RULE-SET,Emby,🎬 Emby
-  - RULE-SET,BiliBili,🎬 BiliBili
+  - RULE-SET,BiliBili,📺 BiliBili
   - RULE-SET,Speedtest,📐 Speedtest
-  - RULE-SET,OpenAi,🌏 OpenAi
+  - RULE-SET,Ai,🤖 AI
   - RULE-SET,Apple,🍎 Apple
   - RULE-SET,Microsoft,🧩 Microsoft
   - RULE-SET,Game,🎮 Game
-  - RULE-SET,Cloudflare,🌏 Cloudflare
-  - RULE-SET,China,🌏 China
+  - RULE-SET,China,🇨🇳 China
   - RULE-SET,Global,🌏 Global
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
@@ -527,5 +230,5 @@ rules:
   - IP-CIDR,fe80::/10,DIRECT
   - IP-CIDR,119.28.28.28/32,DIRECT
   - IP-CIDR,182.254.116.0/24,DIRECT
-  - GEOIP,CN,🌏 China
+  - GEOIP,CN,🇨🇳 China
   - MATCH,🐟 Final
