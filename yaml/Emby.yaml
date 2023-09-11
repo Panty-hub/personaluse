@@ -9,6 +9,7 @@ payload:
   - DOMAIN-SUFFIX,nmg.llc
   - DOMAIN-SUFFIX,casacam.net
   - DOMAIN-SUFFIX,xmsl.org
+  - DOMAIN-KEYWORD,charontv
   - DOMAIN-KEYWORD,freeview
   - DOMAIN-KEYWORD,bluesea
   - DOMAIN-KEYWORD,misakaf
