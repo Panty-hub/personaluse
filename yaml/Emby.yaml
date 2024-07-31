@@ -13,6 +13,7 @@ payload:
   - DOMAIN-SUFFIX,nmg.llc
   - DOMAIN-SUFFIX,casacam.net
   - DOMAIN-SUFFIX,xmsl.org
+  - DOMAIN-SUFFIX,de.ddns.me
   - DOMAIN-KEYWORD,charontv
   - DOMAIN-KEYWORD,freeview
   - DOMAIN-KEYWORD,bluesea
